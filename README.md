@@ -35,20 +35,12 @@ To install PostgreSQL visit [Postgres app](http://postgresapp.com/).
 
 2.  Run `bundle install` to install all required gems
 
-- Ruby version
+3.  Add all the required environment variables to database.yml
 
-- System dependencies
+4.  Start up the server with the command rails s
 
-- Configuration
+5.  Visit http://localhost:3000 and to load application in your browser
 
 - Database creation
 
 - Database initialization
-
-- How to run the test suite
-
-- Services (job queues, cache servers, search engines, etc.)
-
-- Deployment instructions
-
-- ...
