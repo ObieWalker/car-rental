@@ -1,24 +1,54 @@
-# README
+# Netwhips
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### What the project does
 
-Things you may want to cover:
+- This is a car rental application that enables users book available cars for a given time.
 
-* Ruby version
+### Why the project is useful
 
-* System dependencies
+### Contributing to the project
 
-* Configuration
+- This was intended to be a personal project but I have gotten feedback from colleagues which were duly implemented.
 
-* Database creation
+## TECHNOLOGIES USED
 
-* Database initialization
+- Ruby on rails
+  Things you may want to cover:
 
-* How to run the test suite
+### External Dependencies
 
-* Services (job queues, cache servers, search engines, etc.)
+This web application is written with Ruby using the Ruby on Rails framework and a PostgreSQL database.
 
-* Deployment instructions
+To install Ruby visit [Ruby Lang](https://www.ruby-lang.org). [v2.4.0]
 
-* ...
+To install Rails visit [Ruby on Rails](http://rubyonrails.org/). [v5.0.1]
+
+Install [RubyGems](https://rubygems.org/) and [Bundler](http://bundler.io/) to help you manage dependencies in your [Gemfile](Gemfile).
+
+To install PostgreSQL visit [Postgres app](http://postgresapp.com/).
+
+## For installation
+
+- Once you have Ruby, Rails and PostgreSQL installed. Take the following steps to install the application:
+
+1.  Run `git clone https://github.com/ObieWalker/car-rental.git` to clone this repository
+
+2.  Run `bundle install` to install all required gems
+
+- Ruby version
+
+- System dependencies
+
+- Configuration
+
+- Database creation
+
+- Database initialization
+
+- How to run the test suite
+
+- Services (job queues, cache servers, search engines, etc.)
+
+- Deployment instructions
+
+- ...
