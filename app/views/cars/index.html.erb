@@ -1,6 +1,5 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Cars</h1>
+<h4>Hi <%= current_user.first_name if current_user =%>, these are our available Vehicles.</h4>
 
 <table>
   <thead>
@@ -35,5 +34,6 @@
 </table>
 
 <br>
-
-<%= link_to 'New Car', new_car_path %>
+<% if current_user && current_user.isAdmin %>  
+  <%= link_to 'New Car', new_car_path %>
+<% end %>
