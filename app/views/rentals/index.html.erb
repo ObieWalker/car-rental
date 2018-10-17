@@ -10,7 +10,7 @@
       <th>User</th>
       <th>Start date</th>
       <th>End date</th>
-      <th>Cancelled</th>
+      <th>Status</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,12 +20,16 @@
       <tr>
         <td><%= rental.car_id %></td>
         <td><%= rental.user_id %></td>
-        <td><%= rental.start_date %></td>
-        <td><%= rental.end_date %></td>
-        <td><%= rental.cancelled %></td>
-        <td><%= link_to 'Show', rental %></td>
-        <td><%= link_to 'Edit', edit_rental_path(rental) %></td>
-        <td><%= link_to 'Destroy', rental, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= Date.parse(rental.start_date) %></td>
+        <td><%= Date.parse(rental.end_date) %></td>
+        <% if rental.cancelled %>
+        <td>Rental Terminated</td>
+        <% else %>
+        <td>Ongoing</td>
+        <% end %>
+        <td><%= link_to 'View Rental Details', rental %></td>
+        <td><%= link_to 'Modify rentail details', edit_rental_path(rental) %></td>
+        <td><%= link_to 'Cancel rental', rental, method: :delete, data: { confirm: 'This cannot be undone. Are you sure you want to cancel your booking?' } %></td>
       </tr>
     <% end %>
   </tbody>

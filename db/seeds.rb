@@ -14,11 +14,23 @@ end
 
 puts "10 cars created"
 
+User.create!(
+  name: "Obi Walker",
+  email: "obinnawalker@gmail.com",
+  isAdmin: true,
+  disabled: false,
+  password: BCrypt::Password.create("password"),
+  encrypted_password: BCrypt::Password.create("password"),
+  created_at: DateTime.now,
+  updated_at: DateTime.now
+)
+puts "Admin user created"
+
 5.times do |user|
   User.create!(
     name: Faker::Name.name,
     email: Faker::Internet.email,
-    isAdmin: true,
+    isAdmin: false,
     disabled: false,
     password: BCrypt::Password.create("password"),
     encrypted_password: BCrypt::Password.create("password"),
@@ -29,14 +41,15 @@ end
 
 puts "5 users created"
 
-5.times do |rental|
+30.times do |rental|
+  rental_date = DateTime.now + rand(8..21)
   Rental.create!(
-    car_id: "#{rental}",
-    user_id: "#{rental}",
-    start_date: DateTime.now + 5,
-    end_date: DateTime.now + 7,
+    car_id: rand(1..10),
+    user_id: "#{(rental % 5) + 1}",
+    start_date: rental_date,
+    end_date: rental_date + rand(3..10),
     cancelled: false
   )
 end
 
-puts "5 rentals created"
+puts "30 rentals created"

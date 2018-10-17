@@ -12,18 +12,18 @@
 
 <p>
   <strong>Start date:</strong>
-  <%= @rental.start_date %>
+  <%= Date.parse(@rental.start_date).strftime("%B %e, %Y") %>
 </p>
 
 <p>
   <strong>End date:</strong>
-  <%= @rental.end_date %>
+  <%= Date.parse(@rental.end_date).strftime("%B %e, %Y") %>
 </p>
-
-<p>
-  <strong>Cancelled:</strong>
-  <%= @rental.cancelled %>
-</p>
+<% if @rental.cancelled %>
+  <p>
+    <strong>This booking has been cancelled. Please contact an admin.</strong>
+  </p>
+<% end %>
 
 <%= link_to 'Edit', edit_rental_path(@rental) %> |
 <%= link_to 'Back', rentals_path %>

@@ -61,6 +61,14 @@ class RentalsController < ApplicationController
     end
   end
 
+  def cancel
+    @rental.update(cancelled: true)
+    respond_to do |format|
+      format.html { redirect_to rentals_url, notice: 'Your rental booking has been cancelled.' }
+      format.json { head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_rental
