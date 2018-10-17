@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20180930230010) do
     t.integer  "car_id"
     t.integer  "user_id"
     t.string   "start_date"
-    t.integer  "end_date"
+    t.string  "end_date"
     t.boolean  "cancelled"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
