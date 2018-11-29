@@ -1,36 +1,37 @@
 <p id="notice"><%= notice %></p>
 
-<img class="img-responsive" src=<%= @car.image %>/>
-<br />
-<p>
-  <strong>Car brand:</strong>
-  <%= @car.car_brand %>
-</p>
+<% if !@car.available %>
+  <p class="text-danger">This car is not available at this time.</p>
+<% end %>
+  <div class=<%= !@car.available? ? 'not-available' : '' %>>
 
-<p>
-  <strong>Car model:</strong>
-  <%= @car.car_model %>
-</p>
+    <%= image_tag @car.image, class: "img-responsive img-size" %>
+    <br />
+    <p>
+      <strong>Car brand:</strong>
+      <%= @car.car_brand %>
+    </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @car.user_id %>
-</p>
+    <p>
+      <strong>Car model:</strong>
+      <%= @car.car_model %>
+    </p>
 
-<p>
-  <strong>Available:</strong>
-  <%= @car.available %>
-</p>
+    <p>
+      <strong>Details:</strong>
+      <% puts @car.details.class %>
+      <%= @car.details %>
+    </p>
 
-<p>
-  <strong>Details:</strong>
-  <%= @car.details %>
-</p>
+    <p>
+      <strong>Price:</strong>
+      <%= @car.price %>
+    </p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @car.price %>
-</p>
 
-<%= link_to 'Edit', edit_car_path(@car) %> |
-<%= link_to 'Back', cars_path %>
+    <button type="button" class="btn btn-primary"><%= link_to 'All Cars', cars_path %></button>
+  </div>
+
+<% if current_user && current_user.isAdmin %>
+<button type="button" class="btn btn-success"><%= link_to 'Edit', edit_car_path(@car) %></button>
+<% end %>

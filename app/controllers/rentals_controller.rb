@@ -1,10 +1,14 @@
 class RentalsController < ApplicationController
-  before_action :set_rental, only: [:show, :edit, :update, :destroy]
+  before_action :set_rental, only: [:show, :edit, :update, :destroy, :modify_status, :cancel]
 
   # GET /rentals
   # GET /rentals.json
   def index
-    @rentals = Rental.where(:user_id => current_user.id)
+    if current_user.isAdmin
+      @rentals = Rental.all
+    else
+      @rentals = Rental.where(:user_id => current_user.id)
+    end
   end
 
   # GET /rentals/1
@@ -61,11 +65,34 @@ class RentalsController < ApplicationController
     end
   end
 
+  def modify_status
+    if current_user.isAdmin
+      if @rental.pending?
+        @rental.confirmed!
+      elsif @rental.confirmed?
+        @rental.cancelled!
+      elsif @rental.cancelled?
+        @rental.pending!
+      end
+      respond_to do |format|
+        format.html { redirect_to rentals_url, notice: 'The booking status has been modified.' }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to rentals_url, notice: 'You do not have permission.' }
+        format.json { head :no_content }
+      end
+    end
+  end
+
   def cancel
-    @rental.update(cancelled: true)
-    respond_to do |format|
-      format.html { redirect_to rentals_url, notice: 'Your rental booking has been cancelled.' }
-      format.json { head :no_content }
+    if current_user
+      @rental.cancelled!
+      respond_to do |format|
+        format.html { redirect_to rentals_url, notice: 'Your rental booking has been cancelled.' }
+        format.json { head :no_content }
+      end
     end
   end
 

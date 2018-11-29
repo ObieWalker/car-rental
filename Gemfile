@@ -60,3 +60,5 @@ gem 'devise', '~> 4.5'
 
 gem 'bootstrap'
 gem 'bootstrap-sass', '~> 3.3.7'
+gem 'friendly_id', '~> 5.2.0'
+gem 'toastr-rails'

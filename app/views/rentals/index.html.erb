@@ -11,7 +11,7 @@
       <th>Start date</th>
       <th>End date</th>
       <th>Status</th>
-      <th colspan="3"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -22,14 +22,20 @@
         <td><%= rental.user_id %></td>
         <td><%= Date.parse(rental.start_date) %></td>
         <td><%= Date.parse(rental.end_date) %></td>
-        <% if rental.cancelled %>
-        <td>Rental Terminated</td>
-        <% else %>
-        <td>Ongoing</td>
-        <% end %>
-        <td><%= link_to 'View Rental Details', rental %></td>
-        <td><%= link_to 'Modify rentail details', edit_rental_path(rental) %></td>
-        <td><%= link_to 'Cancel rental', rental, method: :delete, data: { confirm: 'This cannot be undone. Are you sure you want to cancel your booking?' } %></td>
+        <% if current_user && current_user.isAdmin %>
+          <% if rental.status == "pending" %>
+            <td>Pending</td>
+          <% elsif rental.status == "confirmed" %>
+            <td>Confirmed</td>
+          <% else %>
+          <td>Cancelled</td>
+          <% end %>
+          <td><%= link_to 'Modify Status', modify_status_rental_path(rental), method: :put, data: { confirm: 'Modify this booking?' } %></td>
+
+          <td><%= link_to 'Modify rentail details', edit_rental_path(rental) %></td>
+          <td><%= link_to 'View Rental Details', rental %></td>
+          <td><%= link_to 'Cancel rental', cancel_rental_path(rental), method: :put, data: { confirm: 'This cannot be undone. Are you sure you want to cancel your booking?' } %></td>
+        <% end%>
       </tr>
     <% end %>
   </tbody>

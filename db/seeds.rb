@@ -4,10 +4,10 @@ require 'bcrypt'
   Car.create!(
     car_brand: Faker::Vehicle.make,
     car_model: Faker::Vehicle.model,
-    image: Faker::Avatar.image("my-own-slug"),
+    image: "https://goo.gl/tgWBW1",
     user_id: 1,
     available: true,
-    details: Faker::Vehicle.car_options,
+    details: Faker::Vehicle.car_options.join(', '),
     price: 25000 * [1,2,3,4,5].sample,
   )
 end
@@ -48,7 +48,7 @@ puts "5 users created"
     user_id: "#{(rental % 5) + 1}",
     start_date: rental_date,
     end_date: rental_date + rand(3..10),
-    cancelled: false
+    status: 0
   )
 end
 
