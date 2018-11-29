@@ -23,12 +23,20 @@
 
   <div class="field">
     <%= f.label :start_date %>
-    <%= f.date_field :start_date, value: l(Date.parse(f.object.start_date)) %>
+    <% if rental.start_date.nil? %>
+      <%= f.date_field :start_date %>
+    <% else %>
+      <%= f.date_field :start_date, value: l(Date.parse(f.object.start_date)) %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= f.label :end_date %>
-    <%= f.date_field :end_date, value: l(Date.parse(f.object.end_date)) %>
+    <% if rental.end_date.nil? %>
+      <%= f.date_field :end_date %>
+    <% else %>
+      <%= f.date_field :end_date, value: l(Date.parse(f.object.end_date)) %>
+    <% end %>
   </div>
 
   <div class="field">

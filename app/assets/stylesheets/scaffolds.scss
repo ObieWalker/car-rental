@@ -20,6 +20,23 @@ pre {
   font-size: 11px;
 }
 
+.all-cards {
+  padding: 5%
+}
+
+.card-component {
+  margin: 2%;
+  padding: 1%;
+  border-radius: 0.3rem;
+  background-color: #ccccd5;
+  width: 45%;
+  height: 500px;
+
+  &:hover {
+    opacity: 0.3;
+  }
+}
+
 a {
   color: #000;
 
@@ -29,7 +46,8 @@ a {
 
   &:hover {
     color: #fff;
-    background-color: #000;
+    // background-color: #f06540;
+    transform: scale3d(1.006, 1.006, 1);
   }
 }
 

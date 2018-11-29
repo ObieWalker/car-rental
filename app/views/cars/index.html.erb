@@ -1,25 +1,32 @@
-
-<h4>Hi <%= current_user.first_name if current_user =%>, these are our Vehicles.</h4>
-<br>
-<% unless !current_user.isAdmin %>  
-<%= link_to 'New Car', new_car_path %>
+<% if current_user && current_user.isAdmin %>
+  <%= link_to 'Add a New Car', new_car_path %>
+<% else %> 
+  <h4>Hi 
+  <% if current_user %>
+    <%= current_user.first_name =%>,
+  <% else %>
+    <span>there,</span>
+  <% end %>
+  these are our Vehicles.</h4>
 <% end %>
 
-<div class="album text-muted">
+<div class="album text-muted all-cards">
   <div class="row">
       <% @cars.each do |car| %>
-        <div class="card">
-          <img class="img-responsive" src=<%= car.image %>/>
+        <div class="card card-component">
+          <%= link_to car do %>
+            <%= image_tag car.image, class: "img-responsive img-size" %>
+          <% end %>
           <p class="center"><%= car.car_brand%> <%= car.car_model %> </p>
           <% unless car.available %>
             <p class="text-red">This car is unavailable at this time</p>
           <% end %>
-          <div class="center">
-            <h6>&#8358;<%= car.price %> per day</h6>
+          <h6>&#8358;<%= car.price %> per day</h6>
+          <div class="row center">
             <span class="col-md-6"><%= link_to 'View car details', car, :class=>"btn btn-primary btn-sm" %></span>
-            <% if current_user.isAdmin %>
-              <p><%= link_to 'Modify Car details', edit_car_path(car) %></p>
-              <p><%= link_to 'Delete Vehicle', car, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+            <% if current_user && current_user.isAdmin %>
+              <span class="card-action-button"><%= link_to 'Modify Car details', edit_car_path(car) %></span>
+              <span class="card-action-button"><%= link_to 'Delete Vehicle', car, method: :delete, data: { confirm: 'Are you sure?' } %></span>
             <% end %>
           </div>
         </div>
